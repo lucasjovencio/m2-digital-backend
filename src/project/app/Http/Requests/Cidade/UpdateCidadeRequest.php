@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Cidade;
 
-use App\Traits\FailedValidationRequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCidadeRequest extends FormRequest
+class UpdateCidadeRequest extends FormRequest
 {
-    use FailedValidationRequestTrait;
-    
     /**
      * Determine if the user is authorized to make this request.
      *

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use App\Traits\JsonResponseTrait;
-use App\Http\Requests\StoreCidadeRequest;
+use App\Http\Requests\Cidade\StoreCidadeRequest;
+use App\Http\Requests\Cidade\UpdateCidadeRequest;
 use App\Http\Resources\Cidade\CidadeCollection;
 use App\Http\Resources\Cidade\CidadeResource;
 use App\Models\Cidade;
@@ -33,7 +34,7 @@ class CidadeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Cidade\StoreCidadeRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCidadeRequest $request,CidadeStoreService $cidadeStoreService)
@@ -63,11 +64,11 @@ class CidadeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Cidade\UpdateCidadeRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id,CidadeUpdateService $cidadeUpdateService)
+    public function update(UpdateCidadeRequest $request, $id,CidadeUpdateService $cidadeUpdateService)
     {
         try{
             return $this->jsonResponseSuccess(new CidadeResource($cidadeUpdateService->update($request,$id)),200);
