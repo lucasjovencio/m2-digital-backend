@@ -1,0 +1,56 @@
+version: "3"
+services:
+  laravel_php:
+    build:
+      dockerfile: "php/php.Dockerfile"
+      context: ./
+    container_name: laravel
+    ports:
+      - 9030:9030
+      - 9000:9000
+    volumes:
+      - "./src/project:/var/www/html"
+      - "./php/config/php.ini:/usr/local/etc/php/php.ini"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - "laravel_database"
+  laravel_web:
+    image: nginx:latest
+    container_name: web
+    ports:
+      - 8083:80
+      - 4431:443
+    volumes:
+      - "./nginx/config:/etc/nginx/conf.d"
+      - "./src/project:/var/www/html"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - "laravel_php"
+  laravel_database:
+    build:
+      dockerfile: "mysql/mysql.Dockerfile"
+      context: ./
+    container_name: laravel-db
+    env_file:
+      - .env
+    restart: always
+    ports:
+      - "3307:3306"
+    expose:
+      - "3306"
+    networks:
+      - backend
+    volumes:
+      - db_laravel:/data
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+volumes:
+  db_laravel:
+    driver: local
