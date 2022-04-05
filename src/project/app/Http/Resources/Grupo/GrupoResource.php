@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Resources\Grupo;
+
+use App\Http\Resources\Campanha\CampanhaResource;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class GrupoResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        return [
+            'id'    =>  $this->id,
+            'nome'  =>  $this->nome,
+            'campanha'=> new CampanhaResource($this->campanha)
+        ];
+    }
+}
