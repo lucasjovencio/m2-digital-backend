@@ -27,7 +27,7 @@ class UpdateGrupoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:5|max:200',
+            'nome' => 'required|min:3|max:200',
             'campanhas_id'=>'nullable|exists:campanhas,id'
         ];
     }

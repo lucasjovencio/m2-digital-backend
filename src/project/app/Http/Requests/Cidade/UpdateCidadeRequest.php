@@ -24,7 +24,7 @@ class UpdateCidadeRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:5|max:200',
+            'nome' => 'required|min:3|max:200',
         ];
     }
 }
