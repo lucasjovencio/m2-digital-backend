@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('cidades',App\Http\Controllers\CidadeController::class);
+Route::resource('campanhas',App\Http\Controllers\CampanhaController::class);
