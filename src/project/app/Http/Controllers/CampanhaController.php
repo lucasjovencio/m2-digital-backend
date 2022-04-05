@@ -57,7 +57,7 @@ class CampanhaController extends Controller
         try{
             return $this->jsonResponseSuccess(new CampanhaResource(Campanha::findOrFail($id)),200);
         }catch(ModelNotFoundException $e){
-            return $this->jsonResponseError($e->getMessage(),404);
+            return $this->jsonResponseError("No query results for model",404);
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }
@@ -75,7 +75,7 @@ class CampanhaController extends Controller
         try{
             return $this->jsonResponseSuccess(new CampanhaResource($cidadeUpdateService->update($request,$id)),200);
         }catch(ModelNotFoundException $e){
-            return $this->jsonResponseError($e->getMessage(),404);
+            return $this->jsonResponseError("No query results for model",404);
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }
@@ -92,7 +92,7 @@ class CampanhaController extends Controller
         try{
             return $this->jsonResponseSuccess(Campanha::findOrFail($id)->delete(),204);
         }catch(ModelNotFoundException $e){
-            return $this->jsonResponseError($e->getMessage(),404);
+            return $this->jsonResponseError("No query results for model",404);
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }
