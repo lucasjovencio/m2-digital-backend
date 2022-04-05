@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Illuminate\Http\Request;
 use App\Traits\JsonResponseTrait;
 use App\Http\Requests\Cidade\StoreCidadeRequest;
 use App\Http\Requests\Cidade\UpdateCidadeRequest;
@@ -12,6 +11,7 @@ use App\Http\Resources\Cidade\CidadeResource;
 use App\Models\Cidade;
 use App\Services\Cidade\CidadeStoreService;
 use App\Services\Cidade\CidadeUpdateService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CidadeController extends Controller
 {
@@ -56,6 +56,8 @@ class CidadeController extends Controller
     {
         try{
             return $this->jsonResponseSuccess(new CidadeResource(Cidade::findOrFail($id)),200);
+        }catch(ModelNotFoundException $e){
+            return $this->jsonResponseError($e->getMessage(),404);
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }
@@ -72,6 +74,8 @@ class CidadeController extends Controller
     {
         try{
             return $this->jsonResponseSuccess(new CidadeResource($cidadeUpdateService->update($request,$id)),200);
+        }catch(ModelNotFoundException $e){
+            return $this->jsonResponseError($e->getMessage(),404);
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }
@@ -87,6 +91,8 @@ class CidadeController extends Controller
     {
         try{
             return $this->jsonResponseSuccess(Cidade::findOrFail($id)->delete(),204);
+        }catch(ModelNotFoundException $e){
+            return $this->jsonResponseError($e->getMessage(),404);
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }
