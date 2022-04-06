@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Campanha;
 
+use App\Http\Resources\Campanha\Produto\HasProdutoCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampanhaResource extends JsonResource
@@ -16,7 +17,8 @@ class CampanhaResource extends JsonResource
     {
         return [
             'id'    =>  $this->id,
-            'nome'  =>  $this->nome
+            'nome'  =>  $this->nome,
+            'produtos'=> new HasProdutoCollection($this->hasProdutos)
         ];
     }
 }

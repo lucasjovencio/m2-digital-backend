@@ -13,4 +13,8 @@ class Campanha extends Model
     protected $fillable = [
         'nome'
     ];
+
+    public function hasProdutos(){
+        return $this->hasMany('App\Models\CampanhaProduto','campanhas_id');
+    }
 }
