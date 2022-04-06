@@ -26,7 +26,7 @@ class GrupoController extends Controller
     public function index()
     {
         try{
-            return new GrupoCollection(Grupo::paginate(5));
+            return new GrupoCollection(Grupo::with(['campanha','campanha.hasProdutos','campanha.hasProdutos.produto','campanha.hasProdutos.desconto'])->paginate(5));
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }
