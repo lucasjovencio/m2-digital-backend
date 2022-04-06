@@ -25,3 +25,4 @@ Route::resource('grupos',App\Http\Controllers\GrupoController::class);
 Route::resource('produtos',App\Http\Controllers\ProdutoController::class);
 Route::resource('descontos',App\Http\Controllers\DescontoController::class);
 Route::resource('campanha-produtos',App\Http\Controllers\CampanhaProdutoController::class);
+Route::resource('cidade-grupos',App\Http\Controllers\CidadeGrupoController::class);

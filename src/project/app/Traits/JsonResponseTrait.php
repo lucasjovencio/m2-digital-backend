@@ -48,4 +48,9 @@ trait JsonResponseTrait
         ],$code);
     }
 
+    private function jsonResponseErrorValidation($message = 'Erro interno',$code = 500)
+    {
+        return response()->json($message,$code);
+    }
+
 }
