@@ -37,7 +37,6 @@ services:
     container_name: laravel-db
     env_file:
       - .env
-    restart: always
     ports:
       - "3307:3306"
     expose:
