@@ -4,6 +4,7 @@ namespace App\Http\Requests\Grupo;
 
 use App\Traits\FailedValidationRequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreGrupoRequest extends FormRequest
 {
@@ -28,7 +29,12 @@ class StoreGrupoRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:3|max:200',
-            'campanhas_id'=>'nullable|exists:campanhas,id'
+            'campanhas_id'=>[
+                'nullable',
+                Rule::Exists('campanhas','id')->where(function($query){
+                    return $query->whereNull('deleted_at');
+                })
+            ]
         ];
     }
 }

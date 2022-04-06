@@ -4,6 +4,7 @@ namespace App\Http\Requests\CidadeGrupo;
 
 use App\Traits\FailedValidationRequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCidadeGrupoRequest extends FormRequest
 {
@@ -27,8 +28,18 @@ class UpdateCidadeGrupoRequest extends FormRequest
     public function rules()
     {
         return [
-            'cidades_id'=>'required|exists:cidades,id',
-            'grupos_id'=>'required|exists:grupos,id',
+            'cidades_id'=>[
+                'required',
+                Rule::Exists('cidades','id')->where(function($query){
+                    return $query->whereNull('deleted_at');
+                })
+            ],
+            'grupos_id'=>[
+                'required',
+                Rule::Exists('grupos','id')->where(function($query){
+                    return $query->whereNull('deleted_at');
+                })
+            ],
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Requests\CampanhaProduto;
 
 use App\Traits\FailedValidationRequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCampanhaProdutoRequest extends FormRequest
 {
@@ -27,9 +28,24 @@ class UpdateCampanhaProdutoRequest extends FormRequest
     public function rules()
     {
         return [
-            'campanhas_id'=>'exists:campanhas,id',
-            'produtos_id'=>'exists:produtos,id',
-            'descontos_id'=>'nullable|exists:descontos,id',
+            'campanhas_id'=>[
+                'required',
+                Rule::Exists('campanhas','id')->where(function($query){
+                    return $query->whereNull('deleted_at');
+                })
+            ],
+            'produtos_id'=>[
+                'required',
+                Rule::Exists('produtos','id')->where(function($query){
+                    return $query->whereNull('deleted_at');
+                })
+            ],
+            'descontos_id'=>[
+                'nullable',
+                Rule::Exists('descontos','id')->where(function($query){
+                    return $query->whereNull('deleted_at');
+                })
+            ],
         ];
     }
 }
