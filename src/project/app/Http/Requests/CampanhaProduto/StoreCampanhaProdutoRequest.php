@@ -27,8 +27,8 @@ class StoreCampanhaProdutoRequest extends FormRequest
     public function rules()
     {
         return [
-            'campanhas_id'=>'exists:campanhas,id',
-            'produtos_id'=>'exists:produtos,id',
+            'campanhas_id'=>'required|exists:campanhas,id',
+            'produtos_id'=>'required|exists:produtos,id',
             'descontos_id'=>'nullable|exists:descontos,id',
         ];
     }
