@@ -54,4 +54,7 @@ class Desconto extends Model
         }
     }
 
+    public function scopeWhereAtivo($query){
+        return $query->where('ativo',1);
+    }
 }
