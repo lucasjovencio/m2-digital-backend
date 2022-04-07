@@ -38,10 +38,15 @@ class DevInstall extends Command
     public function handle()
     {
         shell_exec('composer run-script post-root-package-install'); 
+        $this->info('Composer concluído.');
         shell_exec('php artisan key:generate'); 
-        shell_exec('php artisan config:cache'); 
+        $this->info('Chave da aplicação gerada.');
+        shell_exec('php artisan optimize'); 
+        $this->info('Cache da aplicação renovado.');
         shell_exec('php artisan migrate'); 
+        $this->info('Migração concluida.');
         shell_exec('php artisan l5-swagger:generate'); 
+        $this->info('Swagger gerado.');
         return 0;
     }
 }
