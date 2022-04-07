@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\CampanhaProduto;
 
-use App\Http\Resources\Campanha\CampanhaResource;
+use App\Http\Resources\CampanhaProduto\Campanha\CampanhaResource;
 use App\Http\Resources\Desconto\DescontoResource;
 use App\Http\Resources\Produto\ProdutoResource;
 use Illuminate\Http\Resources\Json\JsonResource;
