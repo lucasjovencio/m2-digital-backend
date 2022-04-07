@@ -22,6 +22,31 @@ class DescontoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/descontos",
+     *      operationId="getDescontoList",
+     *      tags={"Descontos"},
+     *      summary="Lista de descontos",
+     *      description="Retorna a lista de descontos",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function index()
     {
         try{
@@ -37,6 +62,59 @@ class DescontoController extends Controller
      * @param  \App\Http\Requests\Desconto\StoreDescontoRequest  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Post(
+     *      path="/descontos",
+     *      operationId="postDesconto",
+     *      tags={"Descontos"},
+     *      summary="Novo desconto",
+     *      description="Cadastra novo desconto",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nome",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="valor",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="tipo",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="ativo",
+     *                     type="integer"
+     *                 ),
+     *                 example={"nome": "desconto +","valor":"25,43","tipo":0,"ativo":1}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function store(StoreDescontoRequest $request,DescontoStoreService $descontoStoreService)
     {
         try{
@@ -52,6 +130,38 @@ class DescontoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/descontos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="getDescontoShow",
+     *      tags={"Descontos"},
+     *      summary="Desconto",
+     *      description="Retorna o desconto",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function show($id)
     {
         try{
@@ -70,6 +180,66 @@ class DescontoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Put(
+     *      path="/descontos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="getDescontoPut",
+     *      tags={"Descontos"},
+     *      summary="Atualiza desconto",
+     *      description="Retorna o desconto",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nome",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="valor",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="tipo",
+     *                     type="integer"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="ativo",
+     *                     type="integer"
+     *                 ),
+     *                 example={"nome": "desconto +","valor":"25,43","tipo":0,"ativo":1}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function update(Request $request, $id,DescontoUpdateService $descontoUpdateService)
     {
         try{
@@ -87,6 +257,38 @@ class DescontoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Delete(
+     *      path="/descontos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="removeDesconto",
+     *      tags={"Descontos"},
+     *      summary="Remove desconto",
+     *      description="Remove o desconto",
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function destroy($id)
     {
         try{

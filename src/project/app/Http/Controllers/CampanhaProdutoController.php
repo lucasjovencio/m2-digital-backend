@@ -23,6 +23,31 @@ class CampanhaProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/campanha-produtos",
+     *      operationId="getCampanhaProdutoList",
+     *      tags={"Campanhas e Produtos"},
+     *      summary="Campanhas e produtos",
+     *      description="Retorna campanhas e produtos",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function index()
     {
         try{
@@ -38,6 +63,55 @@ class CampanhaProdutoController extends Controller
      * @param  \App\Http\Requests\CampanhaProduto\StoreCampanhaProdutoRequest  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Post(
+     *      path="/campanha-produtos",
+     *      operationId="CampanhaProduto",
+     *      tags={"Campanhas e Produtos"},
+     *      summary="Novo produto na campanha",
+     *      description="Cadastra produto na campanha",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="campanhas_id",
+     *                     type="integer"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="produtos_id",
+     *                     type="integer"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="descontos_id",
+     *                     type="integer"
+     *                 ),
+     *                 example={"campanhas_id": "1","produtos_id":"1"}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function store(StoreCampanhaProdutoRequest $request,CampanhaProdutoStoreService $campanhaProdutoStoreService)
     {
         try{
@@ -53,6 +127,38 @@ class CampanhaProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/campanha-produtos/{id}",
+     *      operationId="getCampanhaProdutoShow",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      tags={"Campanhas e Produtos"},
+     *      summary="Produto e Campanha",
+     *      description="Retorna Produto e Campanha",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function show($id)
     {
         try{
@@ -71,6 +177,62 @@ class CampanhaProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Put(
+     *      path="/campanha-produtos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *      ),
+     *      operationId="CampanhaProdutoPut",
+     *      tags={"Campanhas e Produtos"},
+     *      summary="Atualização de produto e campanha",
+     *      description="Atualiza produto e campanha",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="campanhas_id",
+     *                     type="integer"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="produtos_id",
+     *                     type="integer"
+     *                 ),
+     *                  @OA\Property(
+     *                     property="descontos_id",
+     *                     type="integer"
+     *                 ),
+     *                 example={"campanhas_id": "1","produtos_id":"1"}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function update(UpdateCampanhaProdutoRequest $request, $id,CampanhaProdutoUpdateService $campanhaProdutoUpdateService)
     {
         try{
@@ -88,6 +250,38 @@ class CampanhaProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Delete(
+     *      path="/campanha-produtos/{id}",
+     *      operationId="deleteCampanhaProduto",
+     *      tags={"Campanhas e Produtos"},
+     *      summary="Remove o produto da campanha",
+     *      description="Remove o produto da campanha",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function destroy($id)
     {
         try{

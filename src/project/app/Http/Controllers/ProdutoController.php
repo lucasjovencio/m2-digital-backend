@@ -23,6 +23,31 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/produtos",
+     *      operationId="getProdutoList",
+     *      tags={"Produtos"},
+     *      summary="Lista de produtos",
+     *      description="Retorna a lista de produtos",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function index()
     {
         try{
@@ -38,6 +63,51 @@ class ProdutoController extends Controller
      * @param  \App\Http\Requests\Produto\StoreProdutoRequest  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Post(
+     *      path="/produtos",
+     *      operationId="postProduto",
+     *      tags={"Produtos"},
+     *      summary="Novo produto",
+     *      description="Cadastra novo produto",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nome",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="valor",
+     *                     type="string"
+     *                 ),
+     *                 example={"nome": "produto +","valor":"90,99"}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function store(StoreProdutoRequest $request,ProdutoStoreService $produtoStoreService)
     {
         try{
@@ -53,6 +123,38 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/produtos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="getProdutohow",
+     *      tags={"Produtos"},
+     *      summary="produto",
+     *      description="Retorna o produto",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function show($id)
     {
         try{
@@ -72,6 +174,58 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Put(
+     *      path="/produtos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="getProdutoPut",
+     *      tags={"Produtos"},
+     *      summary="Atualiza produto",
+     *      description="Retorna o produto",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nome",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="valor",
+     *                     type="string"
+     *                 ),
+     *                 example={"nome": "produto +","valor":"90,99"}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function update(UpdateProdutoRequest $request, $id,ProdutoUpdateService $produtoUpdateService)
     {
         try{
@@ -89,6 +243,38 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Delete(
+     *      path="/produtos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="removeProduto",
+     *      tags={"Produtos"},
+     *      summary="Remove produto",
+     *      description="Remove o produto",
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function destroy($id)
     {
         try{

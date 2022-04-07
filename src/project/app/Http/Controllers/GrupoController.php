@@ -23,6 +23,31 @@ class GrupoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/grupos",
+     *      operationId="getGrupoList",
+     *      tags={"Grupos"},
+     *      summary="Lista de grupos",
+     *      description="Retorna a lista de grupos",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function index()
     {
         try{
@@ -38,6 +63,47 @@ class GrupoController extends Controller
      * @param  \App\Http\Requests\Grupo\StoreGrupoRequest  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Post(
+     *      path="/grupos",
+     *      operationId="postGrupo",
+     *      tags={"Grupos"},
+     *      summary="Novo grupo",
+     *      description="Cadastra novo grupo",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nome",
+     *                     type="string"
+     *                 ),
+     *                 example={"nome": "grupo +"}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function store(StoreGrupoRequest $request,GrupoStoreService $grupoStoreService)
     {
         try{
@@ -53,6 +119,38 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/grupos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="getGrupohow",
+     *      tags={"Grupos"},
+     *      summary="Grupo",
+     *      description="Retorna o grupo",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function show($id)
     {
         try{
@@ -72,6 +170,54 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Put(
+     *      path="/grupos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="getGrupoPut",
+     *      tags={"Grupos"},
+     *      summary="Atualiza grupo",
+     *      description="Retorna o grupo",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nome",
+     *                     type="string"
+     *                 ),
+     *                 example={"nome": "grupo +"}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function update(UpdateGrupoRequest $request, $id,GrupoUpdateService $grupoUpdateService)
     {
         try{
@@ -89,6 +235,38 @@ class GrupoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Delete(
+     *      path="/grupos/{id}",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      operationId="removeGrupo",
+     *      tags={"Grupos"},
+     *      summary="Remove grupo",
+     *      description="Remove o grupo",
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function destroy($id)
     {
         try{

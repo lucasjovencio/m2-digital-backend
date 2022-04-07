@@ -22,6 +22,31 @@ class CidadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/cidades",
+     *      operationId="getCidadeList",
+     *      tags={"Cidades"},
+     *      summary="Lista de cidades",
+     *      description="Retorna a lista de cidades",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function index()
     {
         try{
@@ -37,6 +62,47 @@ class CidadeController extends Controller
      * @param  \App\Http\Requests\Cidade\StoreCidadeRequest  $request
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Post(
+     *      path="/cidades",
+     *      operationId="postCidade",
+     *      tags={"Cidades"},
+     *      summary="Nova cidade",
+     *      description="Cadastra e retorna a cidade",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nome",
+     *                     type="string"
+     *                 ),
+     *                 example={"nome": "Cidade"}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation Failed",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function store(StoreCidadeRequest $request,CidadeStoreService $cidadeStoreService)
     {
         try{
@@ -52,6 +118,38 @@ class CidadeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Get(
+     *      path="/cidades/{id}",
+     *      operationId="getCidadeShow",
+     *      tags={"Cidades"},
+     *      summary="Cidade",
+     *      description="Retorna a cidade",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function show($id)
     {
         try{
@@ -70,6 +168,50 @@ class CidadeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Put(
+     *      path="/cidades/{id}",
+     *      operationId="putCidade",
+     *      tags={"Cidades"},
+     *      summary="Atualiza a Cidade",
+     *      description="Atualiza e retorna a cidade",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nome",
+     *                     type="string"
+     *                 ),
+     *                 example={"nome": "Cidade +"}
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function update(UpdateCidadeRequest $request, $id,CidadeUpdateService $cidadeUpdateService)
     {
         try{
@@ -87,6 +229,38 @@ class CidadeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /**
+     * @OA\Delete(
+     *      path="/cidades/{id}",
+     *      operationId="deleteCidade",
+     *      tags={"Cidades"},
+     *      summary="Remove a cidade",
+     *      description="Remove a cidade",
+     *      @OA\Parameter(
+     *         description="ID",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found"
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="Internal server error"
+     *      )
+     *     )
+    */
     public function destroy($id)
     {
         try{

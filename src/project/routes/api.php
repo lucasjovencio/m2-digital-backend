@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
 Route::resource('cidades',App\Http\Controllers\CidadeController::class);
 Route::resource('campanhas',App\Http\Controllers\CampanhaController::class);
 Route::resource('grupos',App\Http\Controllers\GrupoController::class);
