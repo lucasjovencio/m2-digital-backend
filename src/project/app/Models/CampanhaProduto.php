@@ -17,8 +17,8 @@ class CampanhaProduto extends Model
     ];
 
     protected $appends = [
-        'valor_desconto',
-        'valor_desconto_br',
+        'valor',
+        'valor_br',
     ];
 
     public function campanha(){
@@ -33,7 +33,7 @@ class CampanhaProduto extends Model
         return $this->belongsTo("App\Models\Desconto",'descontos_id')->whereAtivo();
     }
 
-    public function getValorDescontoAttribute(){
+    public function getValorAttribute(){
         $valor = 0;
         if($this->desconto){
             $valor_desconto = $this->desconto->valor;
@@ -43,14 +43,17 @@ class CampanhaProduto extends Model
                 $porcentagem = ($valor_desconto/100) * $this->produto->valor;
                 $valor = $this->produto->valor-$porcentagem;
             }
+        }else{
+            $valor = $this->produto->valor;
         }
         return ($valor<0) ? 0 : $valor;
     }
 
-    public function getValorDescontoBrAttribute(){
+    public function getValorBrAttribute(){
         if($this->desconto){
             return "R$ ".number_format($this->valor_desconto, 2, ',', '.');
+        }else{
+            return $this->produto->valor_br;
         }
-        return '';
     }
 }

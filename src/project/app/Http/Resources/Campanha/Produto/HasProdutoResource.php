@@ -19,8 +19,8 @@ class HasProdutoResource extends JsonResource
     {
         return [
             'id'    =>  $this->id,
-            'valor_desconto'=>$this->valor_desconto,
-            'valor_desconto_br'=>$this->valor_desconto_br,
+            'valor'=>$this->valor,
+            'valor_br'=>$this->valor_br,
             'produto'=> new ProdutoResource($this->produto),
             'desconto'=> new DescontoResource($this->desconto),
         ];
