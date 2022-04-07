@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Resources\CidadeGrupo;
+namespace App\Http\Resources\CidadeGrupo\Grupo;
 
-use App\Http\Resources\Cidade\CidadeResource;
-use App\Http\Resources\CidadeGrupo\Grupo\GrupoResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CidadeGrupoResource extends JsonResource
+class GrupoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +16,7 @@ class CidadeGrupoResource extends JsonResource
     {
         return [
             'id'    =>  $this->id,
-            'cidade'=> new CidadeResource($this->cidade),
-            'grupo'=> new GrupoResource($this->grupo),
+            'nome'  =>  $this->nome
         ];
     }
 }
