@@ -52,7 +52,7 @@ class CidadeGrupoController extends Controller
     public function index()
     {
         try{
-            return new CidadeGrupoCollection(CidadeGrupo::with(['cidade','grupo'])->paginate(5));
+            return new CidadeGrupoCollection(CidadeGrupo::has('cidade')->has('grupo')->with(['cidade','grupo'])->paginate(5));
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }

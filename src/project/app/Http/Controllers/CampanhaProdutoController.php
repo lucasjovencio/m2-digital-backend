@@ -51,7 +51,7 @@ class CampanhaProdutoController extends Controller
     public function index()
     {
         try{
-            return new CampanhaProdutoCollection(CampanhaProduto::with(['campanha','produto','desconto'])->paginate(5));
+            return new CampanhaProdutoCollection(CampanhaProduto::has('campanha')->has('produto')->with(['campanha','produto','desconto'])->paginate(5));
         }catch(Exception $e){
             return $this->jsonResponseError($e->getMessage(),$e->getCode());
         }
