@@ -4,7 +4,7 @@ services:
     build:
       dockerfile: "php/php.Dockerfile"
       context: ./
-    container_name: laravel
+    container_name: jovencio_m2
     ports:
       - 9030:9030
       - 9000:9000

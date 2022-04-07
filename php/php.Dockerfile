@@ -2,7 +2,7 @@ FROM php:7.4-fpm
 COPY ./src/project /var/www/html
 WORKDIR /var/www/html
 RUN apt-get update && \
-    # apt-get upgrade -y &&  \
+    apt-get upgrade -y &&  \
     apt-get install -y --no-install-recommends \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
