@@ -2,7 +2,7 @@ FROM php:7.4-fpm
 COPY ./src/project /var/www/html
 WORKDIR /var/www/html
 RUN apt-get update && \
-    apt-get upgrade -y && \
+    # apt-get upgrade -y &&  \
     apt-get install -y --no-install-recommends \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -17,19 +17,19 @@ RUN apt-get update && \
     libgeoip-dev \
     libsodium-dev \ 
     curl \
-    unzip
+    unzip 
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    pdo_mysql \
-    mysqli \
     xsl \
     xml \
     intl \
     soap \
     mbstring \
     bcmath \
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
-    docker-php-ext-install gd
+    mariadb-client \
+    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install mysqli pdo_mysql
 
 RUN usermod -u 1000 www-data && \
     groupmod -g 1000 www-data && \

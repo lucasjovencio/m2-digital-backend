@@ -39,8 +39,6 @@ class DevInstall extends Command
     {
         shell_exec('composer run-script post-root-package-install'); 
         shell_exec('php artisan key:generate'); 
-        shell_exec('php artisan storage:link'); 
-        shell_exec('ln -s /var/www/html/storage/app/public /var/www/html/public'); 
         shell_exec('php artisan config:cache'); 
         shell_exec('php artisan migrate'); 
         shell_exec('php artisan l5-swagger:generate'); 
