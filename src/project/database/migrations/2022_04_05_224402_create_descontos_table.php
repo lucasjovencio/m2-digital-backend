@@ -17,7 +17,7 @@ class CreateDescontosTable extends Migration
             $table->id();
             $table->string('nome',200);
             $table->integer('tipo');
-            $table->double('valor',4,2);
+            $table->double('valor',12,2);
             $table->boolean('ativo');
             $table->timestamps();
             $table->softDeletes();
